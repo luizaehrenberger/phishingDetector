@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detector de Phishing</title>
+</head>
+<body>
+    <h1>Detector de Phishing</h1>
+    <form method="post">
+        <input type="text" name="url" placeholder="Digite uma URL" required>
+        <button type="submit">Verificar</button>
+    </form>
+
+    {% if result %}
+    <h2>Resultado</h2>
+    <ul>
+        <li><strong>Domínio:</strong> {{ result.domain }}</li>
+        <li><strong>Idade do domínio (dias):</strong> {{ result.age }}</li>
+        <li><strong>Certificado SSL:</strong> {{ result.ssl }}</li>
+        <li><strong>Verificação Phishing:</strong>
+            {% if result.phishing %}
+                <span style="color: red;">🚨 URL identificada como phishing!</span>
+            {% else %}
+                <span style="color: green;">✅ URL segura</span>
+            {% endif %}
+        </li>
+        <li><strong>Similaridade com marcas conhecidas:</strong> {{ result.similar }}</li>
+    </ul>
+    {% endif %}
+
+    {% if historico %}
+    <h3>Histórico de URLs analisadas</h3>
+    <table border="1">
+        <tr><th>URL</th><th>Domínio</th><th>Idade</th><th>SSL</th><th>Phishing</th><th>Similaridade</th></tr>
+        {% for r in historico %}
+        <tr>
+            <td>{{ r.url }}</td>
+            <td>{{ r.domain }}</td>
+            <td>{{ r.age }}</td>
+            <td>{{ r.ssl }}</td>
+            <td>{{ 'Sim' if r.phishing else 'Não' }}</td>
+            <td>{{ r.similar }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/exportar">📥 Exportar para CSV</a>
+    {% endif %}
+</body>
+</html>

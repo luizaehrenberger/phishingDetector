@@ -1,0 +1,39 @@
+# Ambiente virtual
+venv/
+ENV/
+env/
+.venv/
+
+# Arquivos Python compilados
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Arquivos de log
+*.log
+
+# Configurações de IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos CSV exportados
+*.csv
+
+# Arquivos de backup/temporários
+*.bak
+*.tmp
+*~
+
+# Arquivos específicos de Flask
+instance/
+*.db
+*.sqlite3
+
+# Cache de pacotes pip
+pip-wheel-metadata/
